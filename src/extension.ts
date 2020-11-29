@@ -1,7 +1,7 @@
 // The module 'vscode' contains the VS Code extensibility API
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
-import { exec, execSync } from 'child_process';
+import { exec } from 'child_process';
 import * as path from 'path';
 import { State } from './state';
 import * as Colors from './colors';
@@ -17,21 +17,7 @@ export function activate(context: vscode.ExtensionContext) {
 	// The command has been defined in the package.json file
 	// Now provide the implementation of the command with registerCommand
 	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('git-status-color.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		const config = vscode.workspace.getConfiguration();
-		console.log(config);
-		const values = {
-			'titleBar.activeBackground': '#ff0000',
-			'titleBar.activeForeground': '#00ff00',
-			'titleBar.inactiveBackground': '#cc0000',
-			'titleBar.inactiveForeground': '#00cc00',
-		}
-		config.update('workbench.colorCustomizations', values, false);
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Test git-status-color!');
-	});
-	let disposable2 = vscode.commands.registerCommand('git-status-color.testGit', () => {
+	let disposable = vscode.commands.registerCommand('git-status-color.testGit', () => {
 		console.log('test git:');
 		const cwd = vscode.workspace.rootPath;
 		console.log(path);
@@ -53,7 +39,6 @@ export function activate(context: vscode.ExtensionContext) {
 	})
 
 	context.subscriptions.push(disposable);
-	context.subscriptions.push(disposable2);
 }
 
 // this method is called when your extension is deactivated
